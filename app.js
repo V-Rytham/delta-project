@@ -12,7 +12,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const userRouter = require("./routes/user.js");
 const passport = require("passport");
@@ -33,7 +33,6 @@ const store = MongoStore.create({
 store.on("error", (err) => console.log("Error in Mongo Session store", err));
 
 const sessionOptions = {
-    store: store,
     secret : process.env.SECRET,
     resave: false,
     saveUninitialized: false,
